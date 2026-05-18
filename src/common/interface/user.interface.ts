@@ -1,0 +1,13 @@
+import { SYS_GENDER, SYS_PROVIDER, SYS_ROLE } from "../enums";
+
+export interface IUser{
+    userName:string,
+    email: string,
+    phoneNumber: string,
+    password: string,
+    role: SYS_ROLE,
+    gender: SYS_GENDER | undefined,
+    provider: SYS_PROVIDER,
+    profilePic:string,
+    
+}
