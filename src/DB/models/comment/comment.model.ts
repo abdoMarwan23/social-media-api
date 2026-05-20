@@ -20,4 +20,18 @@ const schema = new Schema<IComment>(
 )
 
 
+schema.pre("deleteOne", async function () {
+
+    let filter = this.getFilter();
+
+    const replies = await this.model.find({ parentId: filter._id });
+
+    if (replies.length > 0) {
+        for (const replay of replies) {
+            await this.model.deleteOne({ _id: replay._id });
+        }
+    }
+})
+
+
 export const Comment = model("Comment", schema);
